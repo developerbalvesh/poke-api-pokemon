@@ -6,7 +6,7 @@ body {
   background-color: #333;
 }
 
-h2{
+h2 {
   position: relative;
   color: #333;
   padding: 5px;
@@ -110,4 +110,25 @@ h2{
   left: 0;
   width: 100px;
   height: 100px;
+}
+
+.pokeball {
+  width: 80px;
+}
+
+.rotate {
+  position: relative;
+  animation: 1s infinite rotate linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

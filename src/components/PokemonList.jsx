@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import PokemonCard from './PokemonCard';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import PokemonCard from "./PokemonCard";
 
 const PokemonList = ({ searchTerm }) => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -8,7 +8,9 @@ const PokemonList = ({ searchTerm }) => {
   useEffect(() => {
     const fetchPokemonData = async () => {
       try {
-        const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
+        const res = await axios.get(
+          "https://pokeapi.co/api/v2/pokemon?limit=151"
+        );
         const promises = res.data.results.map(async (pokemon) => {
           const pokeRes = await axios.get(pokemon.url);
           return {
@@ -30,11 +32,24 @@ const PokemonList = ({ searchTerm }) => {
   );
 
   return (
-    <div className="pokemon-list">
-      {filteredList.map((pokemon) => (
-        <PokemonCard key={pokemon.name} pokemon={pokemon} />
-      ))}
-    </div>
+    <>
+      <div className="pokemon-list">
+        {!filteredList[0] ? (
+          <>
+            <div className="text-center">
+              <img src="/pokeball.png" className="pokeball rotate" alt="" />
+              <p className="text-light">Loading...</p>
+            </div>
+          </>
+        ) : (
+          <>
+            {filteredList.map((pokemon) => (
+              <PokemonCard key={pokemon.name} pokemon={pokemon} />
+            ))}
+          </>
+        )}
+      </div>
+    </>
   );
 };
 
